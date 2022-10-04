@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel = "stylesheet" th:href = "@{/style.css}">
+
+</head>
+<body>
+
+
+    <img th:src="@{blob.gif}" alt="" width="250" height="250"/>
+<div th:object="${fox}">
+    <div th:if="${count == 0}">
+    <span th:text="'This is ' + *{name} + '. Currently living on ' + *{food} + ' and ' + *{drink} + '. He knows no tricks, go and learn something!'"></span>
+    </div>
+    <div th:unless="${count == 0}">
+       <span th:text="'This is ' + *{name} + '. Currently living on ' + *{food} + ' and ' + *{drink} + '. He knows ' + ${count} + ' tricks'"></span>
+    </div>
+
+    <div>
+        <form>
+            <th>
+                <a th:href="'/nutritionStore?name=' + ${fox.name} ">NUTRITION STORE</a>
+            </th>
+            <th>
+                <a th:href="'/trickCenter?name=' + ${fox.name} ">TRICK CENTER</a>
+            </th>
+            <th>
+                <a th:href="'/login'">LOGIN</a>
+            </th>
+            <th>
+                <a th:href="'/history'">HISTORY</a>
+            </th>
+        </form>
+    </div>
+</div>
+
+<div>
+    <h2>Known tricks:</h2>
+    <h4 th:each="trick : ${currentTricks}" th:text="${trick}"></h4>
+</div>
+
+</body>
+</html>

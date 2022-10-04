@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <----------LINK TO CSS SHEET---------->
+    <link rel = "stylesheet" th:href = "@{/style.css}">
+</head>
+<body>
+    <----------FRAGMENTS----------->
+    <div th:replace="fragments/fragments :: buttons"></div>
+    <div th:replace="fragments/fragments :: search-bar"></div>
+    <div th:replace="fragments/fragments :: lists"></div>
+
+    <----------IMAGES AND RESIZING------------>
+    <img th:src="@{https://infoter.hu/attachment/0072/71432_copy_3_gf.jpg}" alt="" width="250" height="250"/>
+
+    <----------SEARCH BAR or FIELD INPUT---------->
+    <div th:fragment="search-bar">
+        <form th:action = "@{/search}" action = "#" method = "post">
+            <input type="text" placeholder="...like guitar" name="search">
+            <input type="submit" value="Search">
+        </form>
+    </div>
+
+    <div class = "input-field">
+        <label for = "balance">Balance</label>
+        <input type="text" id = "balance" name = "balance" th:field = "*{}">
+        <input type="submit" value="GO">
+    </div>
+
+    <-----------BUTTON---------->
+    <div class="button">
+        <form th:action = "@{/}" action = "#" method = "get">
+            <input type = "submit" value="Clear Filters">
+        </form>
+    </div>
+
+    <----------SELECTOR---------->
+    <div class = "selector">
+        <p>Select account holder to raise balance</p>
+        <select th:name="name">
+            <option th:each="account : ${accounts}" th:text="${account.getName()}"></option>
+        </select>
+    </div>
+
+    <----------CONDITIONALS IF----------->
+    <td>
+        <span th:if="${teacher.gender == 'F'}">Female</span>
+        <span th:unless="${teacher.gender == 'F'}">Male</span>
+    </td>
+
+    <-----------CONDITIONALS SWITCH----------->
+    <td th:switch="${#lists.size(teacher.courses)}">
+        <span th:case="'0'">NO COURSES YET!</span>
+        <span th:case="'1'" th:text="${teacher.courses[0]}"></span>
+        <div th:case="*">
+            <div th:each="course:${teacher.courses}" th:text="${course}"/>
+        </div>
+    </td>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel = "stylesheet" th:href = "@{/style.css}">
+    <h2>WELCOME TO PROGRAMMER FOX CLUB</h2>
+
+</head>
+<body>
+<p>Please provide a name for your pet</p>
+<table>
+        <form th:action = "@{/login}" action = "#" method = "post">
+            <div class = "input-field">
+                <label for = "name">Name:</label>
+                <input type="text" id = "name" name = "name">
+                <input type="submit" value="GO">
+            </div>
+        </form>
+    <div>
+        <form>
+            <th>
+                <a th:href="'/main'">BACK TO MAIN</a>
+            </th>
+        </form>
+    </div>
+</table>
+</body>
+</html>

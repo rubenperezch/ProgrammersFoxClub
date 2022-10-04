@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trick Center</title>
+    <link rel = "stylesheet" th:href = "@{/style.css}">
+
+    <h2>HISTORY</h2>
+
+</head>
+<body>
+<div>
+            <h3>Action Log</h3>
+            <p th:each="action : ${actions}" th:text="${action}"></p>
+</div>
+<div>
+    <form>
+        <th>
+            <a th:href="'/main'">BACK TO MAIN</a>
+        </th>
+    </form>
+</div>
+
+</body>
+</html>

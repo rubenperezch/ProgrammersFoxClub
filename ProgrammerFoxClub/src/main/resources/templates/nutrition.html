@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nutrition Store</title>
+    <link rel = "stylesheet" th:href = "@{/style.css}">
+    <h2>NUTRITION STORE</h2>
+    <h3 th:text="'For: ' +${fox.name}"></h3>
+    <h4 th:text="'Current food: ' +${fox.food}"></h4>
+    <h4 th:text="'Current drink: ' +${fox.drink}"></h4>
+</head>
+<body>
+<table>
+<form th:action="@{/nutritionStore}" action = "#" method = "post">
+    <div class = "selector">
+        <p>Select Food</p>
+        <select th:name="food">
+            <option th:each="food : ${foods}" th:text="${food}"></option>
+        </select>
+    </div>
+    <div class = "selector">
+        <p>Select Drink</p>
+        <select th:name="drink">
+            <option th:each="drink : ${drinks}" th:text="${drink}"></option>
+        </select>
+        <input type="hidden" name="name" th:value="${fox.name}"/>
+        <input type="submit" value="CHANGE"/>
+    </div>
+</form>
+</table>
+
+
+<div>
+    <form>
+        <th>
+            <a th:href="'/trickCenter?name=' + ${fox.name} ">TRICK CENTER</a>
+        </th>
+        <th>
+            <a th:href="'/login'">LOGIN</a>
+        </th>
+        <th>
+            <a th:href="'/main?name=' + ${fox.name} ">BACK TO MAIN</a>
+        </th>
+    </form>
+</div>
+
+</body>
+</html>

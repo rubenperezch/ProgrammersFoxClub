@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trick Center</title>
+    <link rel = "stylesheet" th:href = "@{/style.css}">
+    <h2>TRICK CENTER</h2>
+    <h3 th:text="'For: ' +${fox.name} + ' current tricks are ' +${count}">
+    </h3>
+    <h4 th:each="trick : ${currentTricks}" th:text="${trick}">
+
+    </h4>
+</head>
+<body>
+<div th:if="${countAvailable == 0}">
+    <span th:text="'No more tricks available!'"></span>
+</div>
+<div th:unless="${countAvailable == 0}">
+<table>
+    <form th:action="@{/trickCenter}" action = "#" method = "post">
+        <div class = "selector">
+            <p>Select Trick</p>
+            <select th:name="trick">
+                <option th:each="trick : ${tricks}" th:text="${trick}"></option>
+            </select>
+            <input type="hidden" name="name" th:value="${fox.name}"/>
+            <input type="submit" value="ADD"/>
+        </div>
+    </form>
+</table>
+</div>
+
+
+<div>
+    <form>
+        <th>
+            <a th:href="'/nutritionStore?name=' + ${fox.name} ">NUTRITION STORE</a>
+        </th>
+        <th>
+            <a th:href="'/login'">LOGIN</a>
+        </th>
+        <th>
+            <a th:href="'/main?name=' + ${fox.name} ">BACK TO MAIN</a>
+        </th>
+    </form>
+</div>
+
+</body>
+</html>
